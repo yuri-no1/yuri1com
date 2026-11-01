@@ -811,7 +811,7 @@
     return id ? `${id}:${track.Img}` : '';
   }
   function coreAssetName(track, extension) { return extension === 'jpg' ? track.Image : track.asset_no+'.'+extension; }
-  function imageAssetPath(value) { return /^(https?:\/\/|\/(?:preview|source-preview)\/|\/sandbox-)/.test(value || '') ? value : 'aim/'+encodeURIComponent(String(value || '').replace(/^\.\.\/aim\//, '')); }
+  function imageAssetPath(value) { return /^(https?:\/\/|\/(?:preview|source-preview)\/|\/sandbox-|\.\.\/www\/)/.test(value || '') ? value : 'aim/'+encodeURIComponent(String(value || '').replace(/^\.\.\/aim\//, '')); }
   function coreAssetPath(track, extension) { return extension === 'jpg' ? imageAssetPath(track.Image) : 'aim/'+encodeURIComponent(coreAssetName(track,extension)); }
   function coreRecordStem(track) { return track.asset_no; }
   function coreRecordPath(track) { return 'core/'+track.asset_no+'.html'; }

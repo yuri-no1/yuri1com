@@ -1,0 +1,9 @@
+.oc-decorated[data-effect="rainbow"]{--oc-power:0.350;--oc-time:7.00s}
+.oc-decorated[data-effect="rainbow"]{--oc-sweep-power:0.900}
+.oc-decorated[data-effect="rainbow"][data-foil]>.oc-sweep::after{animation-name:oc-sheen-pass-rainbow;animation-duration:5.6000s;animation-timing-function:linear;animation-iteration-count:infinite}
+@keyframes oc-sheen-pass-rainbow{0%{transform:translateX(-170%) rotate(15deg)}14.285714%{transform:translateX(170%) rotate(15deg)}100%{transform:translateX(170%) rotate(15deg)}}
+.oc-decorated[data-effect="rainbow"] .oc-effect{background: linear-gradient(112deg, transparent 5%, #ff65ce8c 22%, #ffeb8b8c 35%, #69f7e6a6 48%, #6f91ff91 61%, #da86ff90 76%, transparent 94%);
+background-size: 230% 100%;}
+.oc-decorated[data-effect="rainbow"][data-foil]:not([data-foil=none])>.oc-sweep::after{background: linear-gradient(90deg, transparent 0%, #ffffff06 14%, #ffffff4d 31%, #ffffffdb 48%, #fffffffa 52%, #ffffff65 70%, transparent 90%);
+filter: blur(7px);
+opacity: calc(var(--oc-sweep-power, .9) * 1.1);}

@@ -6,6 +6,7 @@
 .memorial-notice p:last-child{margin-bottom:0}
 .memorial-page .oc-hero{padding-top:9px}
 .memorial-page .oc-card-stage{padding:10px 10px 12px}
+.memorial-page .oc-flip-back>.oc-art-media{background-size:contain}
 .memorial-page .oc-section{margin-top:34px}
 .memorial-links{display:flex;flex-direction:column;gap:9px}
 .memorial-links a{display:block;padding:12px 14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);border-left:2px solid rgba(250,102,153,.75);border-radius:0 10px 10px 0;font:italic 13px/1.8 Georgia,"Times New Roman",serif;overflow-wrap:anywhere}

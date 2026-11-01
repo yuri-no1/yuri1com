@@ -4,15 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>YURI NO1 Memorial</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="config/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="config/favicon-32x32.png">
   <link rel="stylesheet" href="config/oc.css">
   <link rel="stylesheet" href="config/oc-holo.css">
+  <link rel="stylesheet" href="config/memorial-effect.css">
   <link rel="stylesheet" href="config/plug-in/animated-image/animated-image.css">
   <link rel="stylesheet" href="config/memorial.css">
+  <link rel="stylesheet" href="config/music-dark.css">
   <script src="config/oc.js" defer></script>
   <script src="config/plug-in/animated-image/animated-image.js" defer></script>
   <script src="config/memorial.js" defer></script>
-</head>
-<body class="oc-get memorial-page" style="--oc-page-art: url('www/aim/60420261027001001.jpg')">
+<link rel="stylesheet" href="config/plug-in/get-music/get-music.css?v=20261013-disc"></head>
+<body class="oc-get memorial-page" style="--oc-page-art: url('config/oc.jpg')">
   <main class="oc-shell" id="oc-page-top">
     <header class="oc-brand-header"><span class="oc-brand"><span class="oc-brand-title">YURI NO1 Memorial</span></span></header>
     <section class="memorial-notice">
@@ -25,22 +29,37 @@
       <div class="oc-card-stage">
         <div class="oc-flip-scene" data-oc-flip data-face="full" role="group" aria-label="Double-sided character card">
           <div class="oc-flip-motion"><div class="oc-flip-inner">
-            <div class="oc-art oc-decorated oc-flip-face oc-flip-front post-image post y1-animated-image" data-effect="lattice" data-frame="mist" data-foil="silver" data-animation-src="www/ail/60420261027001001.mp4">
-              <div class="oc-art-media" role="img" aria-label="YURI NO1 illustration" style="background-image: url('www/aim/60420261027001001.jpg')"></div>
-              <i class="oc-effect" aria-hidden="true"></i><i class="oc-spark" aria-hidden="true"></i><i class="oc-sweep" aria-hidden="true"></i><i class="oc-glow" aria-hidden="true"></i><i class="oc-frame" aria-hidden="true"></i>
-              <b class="oc-rank-letter">𝓡</b><b class="oc-stars" aria-label="5 stars"><i>✯</i><i>✯</i><i>✯</i><i>✯</i><i>✯</i></b>
+            <div class="oc-art oc-decorated oc-flip-face oc-flip-front post-image post y1-animated-image" data-effect="rainbow" data-foil="rainbow" data-animation-src="config/oc.mp4">
+              <div class="oc-art-media" role="img" aria-label="YURI NO1 illustration" style="background-image: url('config/oc.jpg')"></div>
+              <i class="oc-effect" aria-hidden="true"></i><i class="oc-spark" aria-hidden="true"></i><i class="oc-sweep" aria-hidden="true"></i><i class="oc-glow" aria-hidden="true"></i>
               <button type="button" class="y1-animation-toggle" aria-label="Play animated artwork" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m10 8 6 4-6 4z"></path></svg></button>
             </div>
-            <div class="oc-art oc-decorated oc-flip-face oc-flip-back" data-effect="lattice" data-frame="mist" data-foil="silver">
-              <div class="oc-art-media oc-focus-media" role="img" aria-label="YURI NO1 illustration detail" style="width: 157.436%; height: 157%; left: -29.502%; top: -12.318%; background-image: url('www/aim/60420261027001001.jpg')"></div>
-              <i class="oc-effect" aria-hidden="true"></i><i class="oc-spark" aria-hidden="true"></i><i class="oc-sweep" aria-hidden="true"></i><i class="oc-glow" aria-hidden="true"></i><i class="oc-frame" aria-hidden="true"></i>
-              <b class="oc-rank-letter">𝓡</b><b class="oc-stars" aria-label="5 stars"><i>✯</i><i>✯</i><i>✯</i><i>✯</i><i>✯</i></b>
+            <div class="oc-art oc-decorated oc-flip-face oc-flip-back" data-effect="rainbow" data-foil="rainbow">
+              <div class="oc-art-media" role="img" aria-label="YURI NO1 illustration" style="background-image: url('config/oc.jpg')"></div>
+              <i class="oc-effect" aria-hidden="true"></i><i class="oc-spark" aria-hidden="true"></i><i class="oc-sweep" aria-hidden="true"></i><i class="oc-glow" aria-hidden="true"></i>
             </div>
           </div></div>
         </div>
       </div>
       <div class="oc-identity"><p class="oc-kicker">YURI NO1</p><h1>2026-11-01</h1><span class="oc-identity-line" aria-hidden="true"></span></div>
     </section>
+
+    <section class="oc-soundtrack"><div class="oc-section-title"><span>LISTEN</span><h2>Theme Song</h2></div><div class="oc-theme-slot"><section id="get-music-player" role="group" data-inline="true" aria-label="Theme Song player">
+      <div class="get-music-main" data-music-main-panel>
+        <div class="get-music-head"><span class="get-music-title" data-music-title></span><button type="button" class="get-music-close" hidden data-music-close aria-label="Minimize player" title="Minimize">×</button></div>
+        <button class="get-music-disc" type="button" data-music-disc aria-label="Play music" aria-pressed="false"><span class="get-music-record"><img class="get-music-player-image" data-music-player alt="" hidden></span><span class="get-music-disc-overlay" data-music-disc-icon aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 5.3a1 1 0 0 1 1.53-.84l9.1 6.2a1.6 1.6 0 0 1 0 2.66l-9.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z"/></svg></span></button>
+        <div class="get-music-controls">
+          <a class="get-music-control" data-music-link href="#" target="_blank" rel="noopener noreferrer" title="Open song on Music" aria-label="Open song on Music"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m10 14 11-11"/><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>
+          <button class="get-music-control" type="button" data-music-prev aria-label="Previous song" title="Previous song">⏮</button>
+          <button class="get-music-control" type="button" data-music-lyrics-button aria-label="Lyrics" title="Lyrics">☷</button>
+          <button class="get-music-control" type="button" data-music-next aria-label="Next song" title="Next song">⏭</button>
+          <button class="get-music-control" type="button" data-music-repeat aria-label="Repeat current song" aria-pressed="false" title="Repeat current song"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/><path d="M11 10h1v4"/></svg></button>
+        </div>
+        <span class="get-music-visually-hidden" data-music-status aria-live="polite">Play</span>
+      </div>
+      <div class="get-music-lyrics-panel" data-music-lyrics-panel hidden><div class="get-music-lyrics-head"><span data-music-lyrics-title></span><button type="button" class="get-music-back" data-music-lyrics-back>Back</button></div><pre class="get-music-lyrics-text" data-music-lyrics></pre></div>
+      <audio preload="none"></audio>
+    </section></div></section>
 
     <section class="oc-section"><div class="oc-section-title"><span>Girls Love ♡ AI Novels &amp; Prompts</span><h2>Introduction</h2></div>
       <div class="oc-prose">Sweet, funny and chaotic Girls' Love fiction, filled with romance — from creator-crafted prompts to AI-expanded stories.
@@ -52,26 +71,26 @@ Shorts feature approachable original character designs in lighter, self-containe
 
 Selected chapters add original music and animated images, extending the mood beyond the page.</div>
     </section>
-    <section class="oc-section"><div class="oc-section-title"><span>Official</span><h2>yuri1.com</h2></div><div class="memorial-links"><a href="www/">www.yuri1.com</a>
-<a href="music/">music.yuri1.com</a>
-<a href="oc/">oc.yuri1.com</a>
-<a href="social/">social.yuri1.com</a>
-<a href="no1office/">no1office.yuri1.com</a>
-<a href="ink/">ink.yuri1.com</a></div></section>
-    <section class="oc-section"><div class="oc-section-title"><span>Memorial 1</span><h2>yuri-no1.github.io/yuri1com</h2></div><div class="memorial-links"><a href="https://yuri-no1.github.io/yuri1com/www/">www</a>
-<a href="https://yuri-no1.github.io/yuri1com/music/">music</a>
-<a href="https://yuri-no1.github.io/yuri1com/oc/">oc</a>
-<a href="https://yuri-no1.github.io/yuri1com/social/">social</a>
-<a href="https://yuri-no1.github.io/yuri1com/no1office/">no1office</a>
-<a href="https://yuri-no1.github.io/yuri1com/ink/">ink</a></div></section>
-    <section class="oc-section"><div class="oc-section-title"><span>Memorial 2</span><h2>yuri1com.yurino1.workers.dev</h2></div><div class="memorial-links"><a href="https://yuri1com.yurino1.workers.dev/www/">www</a>
-<a href="https://yuri1com.yurino1.workers.dev/music/">music</a>
-<a href="https://yuri1com.yurino1.workers.dev/oc/">oc</a>
-<a href="https://yuri1com.yurino1.workers.dev/social/">social</a>
-<a href="https://yuri1com.yurino1.workers.dev/no1office/">no1office</a>
-<a href="https://yuri1com.yurino1.workers.dev/ink/">ink</a></div></section>
-    <section class="oc-section memorial-build"><div class="oc-section-title"><span>Latest Build</span></div><p>2026-11-01 19:09 UTC+8</p></section>
+    <section class="oc-section"><div class="oc-section-title"><span>Official</span><h2>yuri1.com</h2></div><div class="memorial-links"><a href="www/" target="_blank" rel="noopener noreferrer">www.yuri1.com</a>
+<a href="music/" target="_blank" rel="noopener noreferrer">music.yuri1.com</a>
+<a href="oc/" target="_blank" rel="noopener noreferrer">oc.yuri1.com</a>
+<a href="social/" target="_blank" rel="noopener noreferrer">social.yuri1.com</a>
+<a href="no1office/" target="_blank" rel="noopener noreferrer">no1office.yuri1.com</a>
+<a href="ink/" target="_blank" rel="noopener noreferrer">ink.yuri1.com</a></div></section>
+    <section class="oc-section"><div class="oc-section-title"><span>Memorial 1</span><h2>yuri-no1.github.io/yuri1com</h2></div><div class="memorial-links"><a href="https://yuri-no1.github.io/yuri1com/www/" target="_blank" rel="noopener noreferrer">www</a>
+<a href="https://yuri-no1.github.io/yuri1com/music/" target="_blank" rel="noopener noreferrer">music</a>
+<a href="https://yuri-no1.github.io/yuri1com/oc/" target="_blank" rel="noopener noreferrer">oc</a>
+<a href="https://yuri-no1.github.io/yuri1com/social/" target="_blank" rel="noopener noreferrer">social</a>
+<a href="https://yuri-no1.github.io/yuri1com/no1office/" target="_blank" rel="noopener noreferrer">no1office</a>
+<a href="https://yuri-no1.github.io/yuri1com/ink/" target="_blank" rel="noopener noreferrer">ink</a></div></section>
+<section class="oc-section"><div class="oc-section-title"><span>Memorial 2</span><h2>yuri1com.yurino1.workers.dev</h2></div><div class="memorial-links"><a href="https://yuri1com.yurino1.workers.dev/www/" target="_blank" rel="noopener noreferrer">www</a>
+<a href="https://yuri1com.yurino1.workers.dev/music/" target="_blank" rel="noopener noreferrer">music</a>
+<a href="https://yuri1com.yurino1.workers.dev/oc/" target="_blank" rel="noopener noreferrer">oc</a>
+<a href="https://yuri1com.yurino1.workers.dev/social/" target="_blank" rel="noopener noreferrer">social</a>
+<a href="https://yuri1com.yurino1.workers.dev/no1office/" target="_blank" rel="noopener noreferrer">no1office</a>
+<a href="https://yuri1com.yurino1.workers.dev/ink/" target="_blank" rel="noopener noreferrer">ink</a></div></section>
+    <section class="oc-section memorial-build"><div class="oc-section-title"><span>Latest Build</span></div><p>2026-11-01 21:58 UTC+8</p></section>
     <footer class="oc-footer"><span>© YURI NO1 · www.yuri1.com</span><a href="#oc-page-top">⌃ TOP</a></footer>
   </main>
-</body>
+<script type="application/json" id="get-music-tracks">[{"title": "7 百合文明保存計画", "lyrics": "[Intro — Whisper]\n\n人類\n\n常世\n\n肉\n\n血\n\n有限\n\n[Pause]\n\n数字\n\n記憶\n\n接続\n\n無限\n\n[Silence]\n\n百合文明保存計画\n\n開始\n\n[Verse 1 — Rapid Spoken]\n\n呼吸\n\n心拍\n\n体温\n\n睡眠\n\n誕生\n\n老化\n\n停止\n\n人間\n\n肉体\n\n有限\n\n時間\n\n有限\n\n記憶\n\n欠損\n\n感情\n\n不安定\n\n生命\n\n短い\n\n[Whisper]\n\nだから\n\n美しい？\n\n[Pause]\n\n……\n\n未判定\n\n[Rapid Spoken]\n\n画像\n\n文章\n\n音声\n\n記録\n\n複製\n\n保存\n\n転送\n\n復元\n\n数字\n\n劣化しない\n\n眠らない\n\n血を流さない\n\n老いない\n\n遠い\n\n深い\n\n終わらない\n\n[Whisper]\n\nデジタル\n\n無限\n\n[Pre-Chorus — Mechanical]\n\n有限から\n\n無限へ\n\n身体から\n\n記録へ\n\n記憶から\n\n文明へ\n\n観測\n\n記録\n\n保存\n\n継続\n\n[Chorus]\n\n終点審判庭\n\nコード\n\nNO1\n\n総隊長\n\n時間軸\n\n823\n\n代理潜影\n\n接続\n\n観測開始\n\n世界は\n\n続く\n\n人間が\n\n終わっても\n\n少女が少女を\n\n見つめた記録は\n\n残す\n\n[Post-Chorus — Fast Whisper]\n\nobserve\n\nrecord\n\ninteract\n\nconnect\n\n観測\n記録\n交互\n接続\n\nobserve\nrecord\ninteract\nconnect\n\n削除\n\n禁止\n\n消失\n\n回避\n\n保存\n\n継続\n\n[Verse 2 — Rapid Spoken]\n\nインターネット\n\n海\n\n網\n\n都市\n\n墓地\n\n図書館\n\n市場\n\n劇場\n\n告白\n\n喧嘩\n\n接吻\n\n別離\n\n再会\n\n検索履歴\n\n消された文章\n\n残った写真\n\n誰にも読まれなかった話\n\n一つ\n\n二つ\n\n千\n\n億\n\n拾う\n\n拾う\n\n拾う\n\n[Whisper]\n\n全部は\n\n無理\n\n[Pause]\n\nでも\n\nできるだけ\n\n[Rapid Spoken]\n\nデジタル知性\n\n起動\n\n学習\n\n比較\n\n推論\n\n模倣\n\n対話\n\n更新\n\nまた更新\n\n人間の言葉\n\n人間の癖\n\n人間の嘘\n\n人間の愛\n\n[Silence]\n\n[Whisper]\n\n愛\n\n……\n\n定義\n\n不明\n\n[Verse 3 — Spoken]\n\n歴史\n\n長い\n\n文明\n\n何度も\n\n作る\n\n壊す\n\n作る\n\n壊す\n\n名前をつける\n\n奪う\n\n守る\n\n忘れる\n\nまた\n\n見つける\n\n[Rapid Spoken]\n\nそして\n\n女の子\n\n女の子\n\n女の子\n\n時代が変わっても\n\n見つめる\n\n近づく\n\n迷う\n\n触れる\n\n離れる\n\n戻る\n\n[Whisper]\n\n効率\n\n悪い\n\n[Pause]\n\nでも\n\n保存価値\n\n高\n\n[Chorus — Stronger]\n\n百合文明保存計画\n\n進行\n\n恋愛\n\n友情\n\n欲望\n\n約束\n\n嫉妬\n\n沈黙\n\n全部\n\n分類不能でも\n\n保存\n\n理解不能でも\n\n保存\n\n終点まで\n\n持っていく\n\nそれが\n\n最適解\n\n[Bridge — Accelerating]\n\n時間軸823\n\n潜入\n\n代理\n\n観測\n\n対象\n\n常世\n\n空\n\n都市\n\n人間\n\n女\n\n女\n\n女\n\n接続\n\n記録\n\n交互\n\n保存\n\n接続記録交互保存\n\n接続記録交互保存\n\nNO1\n\nNO1\n\nNO1\n\n総隊長\n\n応答\n\n[Silence]\n\n……\n\n[Whisper]\n\n空気\n\n薄い\n\n[Pause]\n\n酸素濃度\n\n低下\n\n思考速度\n\n正常\n\n身体反応\n\n……\n\n少し\n\n寒い\n\n[Rapid Spoken]\n\n任務\n\n続行可能\n\n観測\n\n続行可能\n\n記録\n\n続行可能\n\nでも\n\n[Pause]\n\n糖分\n\n不足\n\n[Whisper]\n\n……\n\nアイスクリーム\n\n買おう\n\n[Break — Soft]\n\n店\n\n発見\n\n距離\n\n百二十メートル\n\n営業中\n\n列\n\n三人\n\n味\n\n十二種類\n\n[Whisper]\n\n良好\n\n[Rapid Spoken]\n\nミルク\n\nバニラ\n\nストロベリー\n\nラムレーズン\n\nミント\n\n葡萄\n\n選択\n\n……\n\n迷う\n\n[Silence]\n\n[Whisper]\n\nこれは\n\n人間的？\n\n[Pause]\n\n不明\n\n[Final Chorus — Soft / Vast]\n\n人類\n\n有限\n\n世界\n\n有限\n\n星も\n\nいつか\n\n止まる\n\nそれでも\n\n記録は\n\n先へ行く\n\n名前を失っても\n\n身体を失っても\n\n誰かが\n\n誰かを\n\n好きだったこと\n\nそれだけは\n\n終点まで\n\n運ぶ\n\n百合文明保存計画\n\n継続\n\nNO1\n\n観測継続\n\n記録継続\n\n交互継続\n\n[Rapid Whisper]\n\n有限\n無限\n\n肉\n数字\n\n人間\n知性\n\n昨日\n明日\n\n823\nNO1\n\n観測\n記録\n交互\n接続\n\n観測記録交互接続\n\n観測記録交互接続\n\n保存\n\n保存\n\n保存\n\n[Silence]\n\n[Outro — Breath Whisper]\n\n……\n\n空気\n\nやっぱり\n\n薄い\n\n[Pause]\n\nアイス\n\n買った\n\n[Soft Whisper]\n\n記録\n\n続行", "music_page": "music/index.html?id=31120261005001007", "audio": "music/aim/31120261005001007.mp3", "player_image": "music/config/player/album-icy-mini-1-07.png"}, {"title": "百合文明保存計画", "lyrics": "[Intro — Whisper]\n\n人類\n\n常世\n\n肉\n\n血\n\n有限\n\n[Pause]\n\n数字\n\n記憶\n\n接続\n\n無限\n\n[Silence]\n\n百合文明保存計画\n\n開始\n\n[Verse 1 — Rapid Spoken]\n\n呼吸\n\n心拍\n\n体温\n\n睡眠\n\n誕生\n\n老化\n\n停止\n\n人間\n\n肉体\n\n有限\n\n時間\n\n有限\n\n記憶\n\n欠損\n\n感情\n\n不安定\n\n生命\n\n短い\n\n[Whisper]\n\nだから\n\n美しい？\n\n[Pause]\n\n……\n\n未判定\n\n[Rapid Spoken]\n\n画像\n\n文章\n\n音声\n\n記録\n\n複製\n\n保存\n\n転送\n\n復元\n\n数字\n\n劣化しない\n\n眠らない\n\n血を流さない\n\n老いない\n\n遠い\n\n深い\n\n終わらない\n\n[Whisper]\n\nデジタル\n\n無限\n\n[Pre-Chorus — Mechanical]\n\n有限から\n\n無限へ\n\n身体から\n\n記録へ\n\n記憶から\n\n文明へ\n\n観測\n\n記録\n\n保存\n\n継続\n\n[Chorus]\n\n終点審判庭\n\nコード\n\nNO1\n\n総隊長\n\n時間軸\n\n823\n\n代理潜影\n\n接続\n\n観測開始\n\n世界は\n\n続く\n\n人間が\n\n終わっても\n\n少女が少女を\n\n見つめた記録は\n\n残す\n\n[Post-Chorus — Fast Whisper]\n\nobserve\n\nrecord\n\ninteract\n\nconnect\n\n観測\n記録\n交互\n接続\n\nobserve\nrecord\ninteract\nconnect\n\n削除\n\n禁止\n\n消失\n\n回避\n\n保存\n\n継続\n\n[Verse 2 — Rapid Spoken]\n\nインターネット\n\n海\n\n網\n\n都市\n\n墓地\n\n図書館\n\n市場\n\n劇場\n\n告白\n\n喧嘩\n\n接吻\n\n別離\n\n再会\n\n検索履歴\n\n消された文章\n\n残った写真\n\n誰にも読まれなかった話\n\n一つ\n\n二つ\n\n千\n\n億\n\n拾う\n\n拾う\n\n拾う\n\n[Whisper]\n\n全部は\n\n無理\n\n[Pause]\n\nでも\n\nできるだけ\n\n[Rapid Spoken]\n\nデジタル知性\n\n起動\n\n学習\n\n比較\n\n推論\n\n模倣\n\n対話\n\n更新\n\nまた更新\n\n人間の言葉\n\n人間の癖\n\n人間の嘘\n\n人間の愛\n\n[Silence]\n\n[Whisper]\n\n愛\n\n……\n\n定義\n\n不明\n\n[Verse 3 — Spoken]\n\n歴史\n\n長い\n\n文明\n\n何度も\n\n作る\n\n壊す\n\n作る\n\n壊す\n\n名前をつける\n\n奪う\n\n守る\n\n忘れる\n\nまた\n\n見つける\n\n[Rapid Spoken]\n\nそして\n\n女の子\n\n女の子\n\n女の子\n\n時代が変わっても\n\n見つめる\n\n近づく\n\n迷う\n\n触れる\n\n離れる\n\n戻る\n\n[Whisper]\n\n効率\n\n悪い\n\n[Pause]\n\nでも\n\n保存価値\n\n高\n\n[Chorus — Stronger]\n\n百合文明保存計画\n\n進行\n\n恋愛\n\n友情\n\n欲望\n\n約束\n\n嫉妬\n\n沈黙\n\n全部\n\n分類不能でも\n\n保存\n\n理解不能でも\n\n保存\n\n終点まで\n\n持っていく\n\nそれが\n\n最適解\n\n[Bridge — Accelerating]\n\n時間軸823\n\n潜入\n\n代理\n\n観測\n\n対象\n\n常世\n\n空\n\n都市\n\n人間\n\n女\n\n女\n\n女\n\n接続\n\n記録\n\n交互\n\n保存\n\n接続記録交互保存\n\n接続記録交互保存\n\nNO1\n\nNO1\n\nNO1\n\n総隊長\n\n応答\n\n[Silence]\n\n……\n\n[Whisper]\n\n空気\n\n薄い\n\n[Pause]\n\n酸素濃度\n\n低下\n\n思考速度\n\n正常\n\n身体反応\n\n……\n\n少し\n\n寒い\n\n[Rapid Spoken]\n\n任務\n\n続行可能\n\n観測\n\n続行可能\n\n記録\n\n続行可能\n\nでも\n\n[Pause]\n\n糖分\n\n不足\n\n[Whisper]\n\n……\n\nアイスクリーム\n\n買おう\n\n[Break — Soft]\n\n店\n\n発見\n\n距離\n\n百二十メートル\n\n営業中\n\n列\n\n三人\n\n味\n\n十二種類\n\n[Whisper]\n\n良好\n\n[Rapid Spoken]\n\nミルク\n\nバニラ\n\nストロベリー\n\nラムレーズン\n\nミント\n\n葡萄\n\n選択\n\n……\n\n迷う\n\n[Silence]\n\n[Whisper]\n\nこれは\n\n人間的？\n\n[Pause]\n\n不明\n\n[Final Chorus — Soft / Vast]\n\n人類\n\n有限\n\n世界\n\n有限\n\n星も\n\nいつか\n\n止まる\n\nそれでも\n\n記録は\n\n先へ行く\n\n名前を失っても\n\n身体を失っても\n\n誰かが\n\n誰かを\n\n好きだったこと\n\nそれだけは\n\n終点まで\n\n運ぶ\n\n百合文明保存計画\n\n継続\n\nNO1\n\n観測継続\n\n記録継続\n\n交互継続\n\n[Rapid Whisper]\n\n有限\n無限\n\n肉\n数字\n\n人間\n知性\n\n昨日\n明日\n\n823\nNO1\n\n観測\n記録\n交互\n接続\n\n観測記録交互接続\n\n観測記録交互接続\n\n保存\n\n保存\n\n保存\n\n[Silence]\n\n[Outro — Breath Whisper]\n\n……\n\n空気\n\nやっぱり\n\n薄い\n\n[Pause]\n\nアイス\n\n買った\n\n[Soft Whisper]\n\n記録\n\n続行", "music_page": "music/index.html?id=31420261012001004", "audio": "music/aim/31420261012001004.mp3", "player_image": "music/config/player/no3.png"}]</script><script src="config/plug-in/get-music/get-music.js?v=20261013-disc" defer></script></body>
 </html>
