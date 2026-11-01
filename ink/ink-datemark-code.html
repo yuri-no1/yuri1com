@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="INK DATEMARK CODE — deterministic 32 × 32 date matrix.">
+<link rel="icon" type="image/png" sizes="32x32" href="./config/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./config/img/favicon-16x16.png">
+<title>INK DATEMARK CODE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#090a0d;color:#c6c8ce;font-family:"DotGothic16",ui-monospace,monospace}main{max-width:1050px;margin:0 auto;padding:clamp(20px,5vw,55px)}h1{font-size:13px;font-weight:400;letter-spacing:.55em;color:#a3a6b0;margin:0 0 35px}label{display:block;font-size:11px;letter-spacing:.18em;margin-bottom:12px;color:#9699a4}input.date-entry{display:block;width:100%;height:110px;border:1px solid #484b55;background:#101116;color:#dedfe5;padding:14px;font:14px/1.6 inherit;outline:none;border-radius:0;appearance:none}input.date-entry::placeholder{color:#777a84;opacity:1}input.date-entry:focus{border-color:#a6a9b4}button{margin-top:16px;padding:11px 30px;background:transparent;border:1px solid #8c8f9b;color:#d3d5dc;font:13px inherit;letter-spacing:.25em;cursor:pointer}button:hover{background:#24262d}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.speed-field{display:flex;align-items:center;gap:9px;margin-top:16px;color:#a6a8b0;font-size:12px}.status{font-size:11px;color:#a1a3ae;letter-spacing:.12em;margin:28px 0 12px}.matrix-wrap{width:100%;max-width:720px;overflow:hidden}.matrix{white-space:pre;display:block;width:100%;margin:0;color:#c6c8ce;font-family:"DotGothic16",ui-monospace,monospace;font-weight:400;font-variant-ligatures:none;font-kerning:none;font-synthesis:none;tab-size:1;overflow:hidden}.matrix:not(:empty){border-top:1px solid #444751;padding-top:18px}.matrix-text{display:block;white-space:pre;line-height:1}.footer{max-width:720px;border-top:1px solid #444751;margin-top:18px;padding-top:15px;font-size:12px;letter-spacing:.13em}.footer a{color:#a8abb5;text-decoration:none}.footer a:hover{text-decoration:underline}a,a:link,a:visited,a:hover,a:active,a:focus{color:inherit}a{text-decoration:none}.footer a:hover{text-decoration:underline}#copy[hidden]{display:none}
+
+/* The original INK control geometry and viewport-fit layout. */
+:root{--control-height:48px}
+.actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:stretch;margin-top:16px}
+.actions button,.speed-field{margin:0;min-width:0;height:var(--control-height);border-radius:0}
+.actions button{padding:0 8px;display:flex;align-items:center;justify-content:center;letter-spacing:.12em}
+.speed-field{display:flex;gap:8px;align-items:center;justify-content:center;border:1px solid #646773;padding:0 8px}
+.speed-field span{white-space:nowrap}
+#copy[hidden]{display:block;visibility:hidden;pointer-events:none}
+.matrix-wrap{max-width:none;display:flex;justify-content:center;align-items:flex-start}
+.matrix{width:100%;max-width:none;flex:none}
+.matrix:not(:empty){padding-top:10px}
+.matrix-text:not(:empty){display:grid;grid-template-columns:repeat(32,minmax(0,1fr));grid-template-rows:repeat(32,minmax(0,1fr));aspect-ratio:1;white-space:normal;gap:0;font-size:0;line-height:0;letter-spacing:0}
+.matrix-text>span{display:block;width:100%;height:100%;min-width:0;min-height:0;margin:0;padding:0;border:0;font-size:0;line-height:0;color:transparent!important;background:conic-gradient(from 0deg,var(--tr) 0% 25%,var(--br) 25% 50%,var(--bl) 50% 75%,var(--tl) 75% 100%)}
+.footer{max-width:none}
+@media(max-width:650px){
+ main{padding:18px 20px 12px}
+ h1{font-size:clamp(9px,2.45vw,13px);letter-spacing:.18em;margin-bottom:20px;white-space:nowrap}
+ label{margin-bottom:8px}
+ input.date-entry{height:clamp(64px,13dvh,115px);min-height:0;padding:10px 12px}
+ .actions{gap:8px;margin-top:12px}
+ :root{--control-height:42px}
+ .actions button{font-size:12px}
+ .speed-field{font-size:11px;gap:3px;padding:0 5px}
+ .status{margin:16px 0 8px;font-size:10px}
+ .matrix:not(:empty){padding-top:8px}
+ .footer{margin-top:10px;padding-top:10px;font-size:11px}
+}
+.status-mode{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;letter-spacing:inherit;cursor:pointer;display:inline;vertical-align:baseline}.status-mode:hover{background:none;text-decoration:underline}.status-mode:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+/* A display-only text layer gives each invalid date segment its own color. */
+.date-wrap{position:relative;width:100%;height:110px}
+.date-wrap .date-entry{height:100%;color:transparent;caret-color:#dedfe5}
+.date-wrap .date-entry::selection{background:#525660}
+.date-overlay{position:absolute;inset:0;display:flex;align-items:center;padding:0 15px;overflow:hidden;pointer-events:none;white-space:pre;color:#dedfe5;font:14px/1.6 "DotGothic16",ui-monospace,monospace}
+.date-overlay .date-invalid{color:#ff656d}
+.date-heading{display:flex;align-items:baseline;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.date-heading label{display:inline;margin:0}
+.date-heading>span{font-size:11px;letter-spacing:.18em;color:#9699a4}
+.date-heading .status-mode{font-size:11px;letter-spacing:.18em;color:#9699a4}
+.date-wrap .date-entry[readonly]{cursor:default}
+@media(max-width:650px){.date-wrap{height:clamp(64px,13dvh,115px)}.date-overlay{padding:0 13px}}
+@media(max-width:650px){.date-heading{margin-bottom:8px}}
+/* The title itself opens the compact two-tool switcher. */
+.ink-heading{position:relative;display:flow-root}
+.ink-heading h1{cursor:pointer;user-select:none}
+.ink-heading h1:focus-visible{outline:1px solid #8c8f9b;outline-offset:5px}
+.ink-tool-menu[hidden]{display:none}
+.ink-tool-menu{position:absolute;z-index:10;top:24px;left:0;width:max-content;max-width:calc(100vw - 40px);border:1px solid #484b55;background:#101116;padding:5px 0;box-shadow:0 10px 22px #0008}
+.ink-tool-menu a{display:block;padding:10px 15px;border-left:2px solid transparent;font:11px/1.7 "DotGothic16",ui-monospace,monospace;letter-spacing:.14em;white-space:normal;color:#a3a6b0;text-decoration:none}
+.ink-tool-menu a[aria-current="page"]{border-left-color:#a3a6b0;color:#e1e2e8}
+.ink-tool-menu a:hover,.ink-tool-menu a:focus-visible{background:#24262d;color:#f0f0f3;outline:none}
+@media(max-width:650px){.ink-tool-menu{top:20px}}
+</style>
+</head>
+<body><main>
+<header class="ink-heading"><h1 id="ink-menu-title" role="button" tabindex="0" aria-expanded="false" aria-controls="ink-tool-menu">INK DATEMARK CODE</h1><nav id="ink-tool-menu" class="ink-tool-menu" aria-label="INK 工具切換" hidden><a href="./index.html">INK RANDOM QUANTUM SYSTEM</a><a href="./ink-datemark-code.html" aria-current="page">INK DATEMARK CODE</a></nav></header>
+<div class="date-heading">
+  <label for="source">INPUT DATE</label>
+  <span aria-hidden="true">/</span>
+  <button type="button" id="random-mode" class="status-mode" aria-label="切換隨機日期模式" aria-pressed="false">random = n</button>
+</div>
+<div class="date-wrap">
+  <input class="date-entry" id="source" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="yyyy-mm-dd" aria-label="日期，格式 yyyy-mm-dd（只須輸入八位數字）">
+  <div class="date-overlay" id="date-overlay" aria-hidden="true"></div>
+</div>
+<div class="actions">
+  <button id="generate" type="button">演算</button>
+  <button id="clear" type="button">消除</button>
+  <button id="copy" type="button" hidden>複写</button>
+</div>
+<div class="status" id="status" aria-live="polite"><span id="status-text">STANDBY</span> / <button type="button" id="color-mode" class="status-mode" aria-label="切換彩色或單色模式" aria-pressed="true">c = y</button></div>
+<div class="matrix-wrap"><div class="matrix" id="matrix"><span class="matrix-text" id="matrix-text" aria-label="32 × 32 字元陣列"></span></div></div>
+<footer class="footer"><a href="../www/" target="_blank" rel="noopener noreferrer">www.yuri1.com</a><br/><span style="font-size:0.5rem;color:#777777;"> Create: 2026-10-22<br/>Latest: 2026-10-22</span></footer>
+</main>
+<script>
+(()=>{'use strict';
+  const source=document.getElementById('source');
+  const generate=document.getElementById('generate');
+  const clear=document.getElementById('clear');
+  const copy=document.getElementById('copy');
+  const dateOverlay=document.getElementById('date-overlay');
+  const randomButton=document.getElementById('random-mode');
+  const matrix=document.getElementById('matrix');
+  const output=document.getElementById('matrix-text');
+  const status=document.getElementById('status-text');
+  const modeButton=document.getElementById('color-mode');
+  const glyphs=['▗','▖','▄','▝','▐','▞','▟','▘','▚','▌','▙','▀','▜','▛','█'];
+  const colors=['#FFFFFF','#808080','#6E927C','#00FFFF','#00FF00','#FF00FF','#FF0000','#FFFF00'];
+  let digits='';
+  let colorful=true;
+  let lastDate='';
+  let colorIndexes=[];
+  let randomMode=false;
+  let randomPending=false;
+  let previousManualDigits='';
+  function updateGenerateLabel(){
+    generate.textContent=randomMode?(lastDate?'再隨機':'隨機'):(lastDate?'再演算':'演算');
+  }
+
+  // Separators are display-only: digits is always an eight-digit YYYYMMDD string.
+  function displayDate(raw){
+    if(raw.length<4)return raw;
+    if(raw.length<6)return raw.slice(0,4)+'-'+raw.slice(4);
+    if(raw.length===6)return raw.slice(0,4)+'-'+raw.slice(4)+'-';
+    return raw.slice(0,4)+'-'+raw.slice(4,6)+'-'+raw.slice(6);
+  }
+  function caretForDigits(value,count){
+    if(count<=0)return 0;
+    let seen=0;
+    for(let i=0;i<value.length;i++){
+      if(/[0-9]/.test(value[i]))seen++;
+      if(seen===count){let position=i+1;while(value[position]==='-')position++;return position;}
+    }
+    return value.length;
+  }
+  function assignDate(raw,caretDigits){
+    digits=raw.replace(/\D/g,'').slice(0,8);
+    const formatted=displayDate(digits);
+    source.value=formatted;
+    const caret=caretForDigits(formatted,Math.min(caretDigits,digits.length));
+    source.setSelectionRange(caret,caret);
+    updateDateOverlay();
+  }
+  source.addEventListener('input',()=>{
+    if(randomMode)return;
+    const current=source.value;
+    const before=current.slice(0,source.selectionStart??current.length).replace(/\D/g,'').length;
+    assignDate(current,before);
+  });
+  source.addEventListener('keydown',event=>{
+    if(event.key==='Enter'){event.preventDefault();generate.click();return;}
+    if(randomMode)return;
+    if(event.key!=='Backspace'&&event.key!=='Delete')return;
+    const start=source.selectionStart??0,end=source.selectionEnd??0;
+    if(start!==end)return;
+    const text=source.value;
+    const atSeparator=event.key==='Backspace'?text[start-1]==='-':text[start]==='-';
+    if(!atSeparator)return;
+    event.preventDefault();
+    const before=text.slice(0,start).replace(/\D/g,'').length;
+    const removeIndex=event.key==='Backspace'?before-1:before;
+    if(removeIndex>=0&&removeIndex<digits.length){
+      assignDate(digits.slice(0,removeIndex)+digits.slice(removeIndex+1),removeIndex);
+    }
+  });
+
+  function validDate(value){
+    if(!/^\d{8}$/.test(value))return false;
+    const year=Number(value.slice(0,4)),month=Number(value.slice(4,6)),day=Number(value.slice(6));
+    if(year<1||month<1||month>12)return false;
+    return day>=1&&day<=daysInMonth(year,month);
+  }
+  function daysInMonth(year,month){
+    const leap=year%4===0&&(year%100!==0||year%400===0);
+    return [31,leap?29:28,31,30,31,30,31,31,30,31,30,31][month-1];
+  }
+  function updateDateOverlay(){
+    if(randomMode&&randomPending){
+      dateOverlay.textContent='????-??-??';
+      source.setAttribute('aria-invalid','false');
+      return;
+    }
+    const year=digits.slice(0,4),month=digits.slice(4,6),day=digits.slice(6,8);
+    const monthNumber=Number(month);
+    const validMonth=month.length===2&&monthNumber>=1&&monthNumber<=12;
+    const maxDay=validMonth&&year.length===4&&Number(year)>0
+      ?daysInMonth(Number(year),monthNumber)
+      :validMonth?daysInMonth(2000,monthNumber):31;
+    const invalidYear=year.length===4&&Number(year)===0;
+    const invalidMonth=month.length===1?/^[2-9]$/.test(month)
+      :month.length===2&&(monthNumber<1||monthNumber>12);
+    const invalidDay=day.length===1
+      ?Number(day)>Math.floor(maxDay/10)
+      :day.length===2&&(Number(day)<1||Number(day)>maxDay);
+    const parts=[
+      [year,invalidYear],
+      [month,invalidMonth],
+      [day,invalidDay]
+    ];
+    const nodes=[];
+    for(let i=0;i<parts.length;i++){
+      const [value,invalid]=parts[i];
+      if(i===1&&digits.length>=4)nodes.push(document.createTextNode('-'));
+      if(i===2&&digits.length>=6)nodes.push(document.createTextNode('-'));
+      if(value){
+        const part=document.createElement('span');
+        if(invalid)part.className='date-invalid';
+        part.textContent=value;
+        nodes.push(part);
+      }
+    }
+    dateOverlay.replaceChildren(...nodes);
+    source.setAttribute('aria-invalid',String(invalidYear||invalidMonth||invalidDay));
+  }
+  function setRandomMode(enabled){
+    if(enabled===randomMode)return;
+    randomMode=enabled;
+    randomButton.textContent='random = '+(randomMode?'y':'n');
+    randomButton.setAttribute('aria-pressed',String(randomMode));
+    source.readOnly=randomMode;
+    if(randomMode){
+      previousManualDigits=digits;
+      randomPending=true;
+      source.value='????-??-??';
+    }else if(randomPending){
+      digits=previousManualDigits;
+      source.value=displayDate(digits);
+      randomPending=false;
+    }else{
+      source.value=displayDate(digits);
+    }
+    updateDateOverlay();
+    updateGenerateLabel();
+  }
+  randomButton.addEventListener('click',()=>setRandomMode(!randomMode));
+  function randomDate(){
+    let result='';
+    for(let tries=0;tries<5;tries++){
+      const year=1+Math.floor(Math.random()*9999);
+      const month=1+Math.floor(Math.random()*12);
+      const day=1+Math.floor(Math.random()*daysInMonth(year,month));
+      result=String(year).padStart(4,'0')+
+        String(month).padStart(2,'0')+String(day).padStart(2,'0');
+      if(result!==lastDate)break;
+    }
+    if(result===lastDate){
+      const year=(Number(result.slice(0,4))%9999)+1;
+      result=String(year).padStart(4,'0')+result.slice(4);
+    }
+    return result;
+  }
+  function hashDate(value){
+    let hash=2166136261;
+    for(const char of 'INK-DATEMARK-CODE-V5|'+value){
+      hash=Math.imul(hash^char.charCodeAt(0),16777619);
+    }
+    return hash>>>0;
+  }
+  function makeGenerator(seed){
+    let state=seed>>>0;
+    return ()=>{
+      state=(state+0x6D2B79F5)>>>0;
+      let n=Math.imul(state^(state>>>15),state|1);
+      n^=n+Math.imul(n^(n>>>7),n|61);
+      return (n^(n>>>14))>>>0;
+    };
+  }
+  function makeMatrix(value){
+    // The pale glyph quadrants form the walls (1); the dark negative space
+    // is the walkable maze (0). Never mirror cells.
+    const width=64,length=width*width,seed=hashDate(value);
+    const wall=new Uint8Array(length).fill(1);
+    const next=makeGenerator(seed);
+    const logicalWidth=31,logicalHeight=31,logicalCount=logicalWidth*logicalHeight;
+    const visitedCells=new Uint8Array(logicalCount);
+    const stack=new Int16Array(logicalCount);
+    const carve=(x,y)=>{wall[y*width+x]=0;};
+    const pixelForCell=(cx,cy)=>({x:1+cx*2,y:1+cy*2});
+    const cellPixels=(x,y)=>{
+      const p=(y*2)*width+(x*2);
+      return [p,p+1,p+width,p+width+1];
+    };
+
+    // Two different boundary cells, on any of four sides. Both opening
+    // glyphs are ▘ (only the upper-left quadrant is pale). Its three
+    // adjacent dark quadrants allow a genuine connected opening on every side.
+    // Corners are excluded to avoid an accidental opening on two sides.
+    function pickOpening(){
+      const side=next()%4,position=2+(next()%28);
+      return {side,position,
+        x:side===1?31:side===3?0:position,
+        y:side===0?0:side===2?31:position};
+    }
+    const openings=[pickOpening(),pickOpening()];
+    if(openings[0].x===openings[1].x&&openings[0].y===openings[1].y){
+      const second=openings[1];
+      second.position=2+((second.position-1)%28);
+      if(second.side===0||second.side===2)second.x=second.position;
+      else second.y=second.position;
+    }
+    function logicalAnchor(opening){
+      switch(opening.side){
+        case 0:return {x:opening.position,y:0};
+        case 1:return {x:30,y:opening.position};
+        case 2:return {x:opening.position,y:30};
+        default:return {x:0,y:opening.position};
+      }
+    }
+
+    // Recursive-backtracker / randomized DFS creates one connected network.
+    // Every two-cell step carves its intermediate wall and never adds
+    // a disconnected dark island.
+    let depth=1,seen=1;
+    const anchor=logicalAnchor(openings[0]);
+    const firstIndex=anchor.y*logicalWidth+anchor.x;
+    stack[0]=firstIndex;visitedCells[firstIndex]=1;
+    const first=pixelForCell(anchor.x,anchor.y);
+    carve(first.x,first.y);
+    const directions=[[0,-1],[1,0],[0,1],[-1,0]];
+    // These independent interior passages are reserved for the exact date
+    // signature. Spread them throughout the maze rather than along one edge.
+    const signatureBridges=[];
+    const reserved=new Uint8Array(length);
+    for(let i=0;i<32;i++){
+      const cx=2+(i%4)*8,cy=2+Math.floor(i/4)*3;
+      const pixel=(1+cy*2)*width+(2+cx*2);
+      signatureBridges.push(pixel);
+      reserved[pixel]=1;
+    }
+    while(depth){
+      const here=stack[depth-1];
+      const x=here%logicalWidth,y=(here/logicalWidth)|0;
+      const choices=[];
+      for(const [dx,dy] of directions){
+        const nx=x+dx,ny=y+dy;
+        if(nx>=0&&nx<logicalWidth&&ny>=0&&ny<logicalHeight&&!visitedCells[ny*logicalWidth+nx]){
+          const between=(1+y*2+dy)*width+(1+x*2+dx);
+          if(reserved[between])continue;
+          choices.push([dx,dy,nx,ny]);
+        }
+      }
+      if(!choices.length){depth--;continue;}
+      const [dx,dy,nx,ny]=choices[next()%choices.length];
+      const oldPoint=pixelForCell(x,y),newPoint=pixelForCell(nx,ny);
+      carve(oldPoint.x+dx,oldPoint.y+dy);
+      carve(newPoint.x,newPoint.y);
+      const index=ny*logicalWidth+nx;
+      visitedCells[index]=1;stack[depth++]=index;seen++;
+    }
+    if(seen!==logicalCount)throw new Error('DATEMARK UNVISITED CELL');
+
+    // Keep only the outermost quadrant edge sealed. Extend existing paths
+    // into the immediately adjacent bottom/right quadrants to avoid the
+    // artificial two-pixel-wide frame from v4.
+    for(let i=0;i<logicalWidth;i++){
+      if(next()%3!==0)carve(1+i*2,62);
+      if(next()%3!==0)carve(62,1+i*2);
+    }
+
+    // Precisely these two boundary *glyphs* break the external wall.
+    // TL remains a wall while TR, BL and BR form one dark connected path.
+    for(const opening of openings){
+      const p=opening.y*2*width+opening.x*2;
+      wall[p]=1;
+      wall[p+1]=0;
+      wall[p+width]=0;
+      wall[p+width+1]=0;
+    }
+
+    // One optional interior passage per date bit. All bridge endpoints are
+    // already walkable, so activating a bridge can never disconnect the maze.
+    // The 32 reserved locations guarantee different numeric dates differ
+    // even if their pseudo-random generator seeds accidentally collide.
+    const dateBits=(Number(value)^0xA5C39F17)>>>0;
+    for(let i=0;i<32;i++){
+      if((dateBits>>>(31-i))&1)wall[signatureBridges[i]]=0;
+    }
+
+    // Independent 4-neighbor audit of the *dark* walkable area.
+    let totalWalkable=0;
+    for(const pixel of wall)if(!pixel)totalWalkable++;
+    const flooded=new Uint8Array(length),queue=new Uint16Array(length);
+    let head=0,tail=1;
+    const entrancePixel=(openings[0].y*2)*width+openings[0].x*2+1;
+    queue[0]=entrancePixel;flooded[entrancePixel]=1;
+    while(head<tail){
+      const p=queue[head++],x=p%width,y=(p/width)|0;
+      const neighbors=[y>0?p-width:-1,x<width-1?p+1:-1,y<width-1?p+width:-1,x>0?p-1:-1];
+      for(const n of neighbors){
+        if(n>=0&&!wall[n]&&!flooded[n]){flooded[n]=1;queue[tail++]=n;}
+      }
+    }
+    const secondPixel=(openings[1].y*2)*width+openings[1].x*2+1;
+    if(tail!==totalWalkable||!flooded[secondPixel])throw new Error('DATEMARK DISCONNECTED CORRIDOR');
+    let boundaryOpenings=0;
+    for(let y=0;y<32;y++)for(let x=0;x<32;x++){
+      if(x!==0&&x!==31&&y!==0&&y!==31)continue;
+      const pixels=cellPixels(x,y);
+      const mask=(wall[pixels[0]]?8:0)|(wall[pixels[1]]?4:0)|
+        (wall[pixels[2]]?2:0)|(wall[pixels[3]]?1:0);
+      const isOpening=openings.some(o=>o.x===x&&o.y===y);
+      if(isOpening){
+        if(mask!==8)throw new Error('DATEMARK ENTRANCE GLYPH');
+        boundaryOpenings++;
+      }else if((y===0&&(mask&12)!==12)||(y===31&&(mask&3)!==3)||
+        (x===0&&(mask&10)!==10)||(x===31&&(mask&5)!==5)){
+        throw new Error('DATEMARK UNINTENDED EDGE OPENING');
+      }
+    }
+    if(boundaryOpenings!==2)throw new Error('DATEMARK ENTRANCE COUNT');
+
+    const chars=[],palette=[],masks=[];
+    for(let y=0;y<32;y++){
+      let row='';
+      for(let x=0;x<32;x++){
+        const pixels=cellPixels(x,y);
+        const mask=(wall[pixels[0]]?8:0)|(wall[pixels[1]]?4:0)|
+          (wall[pixels[2]]?2:0)|(wall[pixels[3]]?1:0);
+        if(mask===0)throw new Error('DATEMARK EMPTY CELL');
+        row+=glyphs[mask-1];masks.push(mask);
+        const cellSeed=(seed^Math.imul(x+1,0x27D4EB2D)^Math.imul(y+1,0x165667B1))>>>0;
+        palette.push((makeGenerator(cellSeed)()>>>13)&7);
+      }
+      chars.push(row);
+    }
+    return {text:chars.join('\n'),palette,masks};
+  }
+  function layout(){
+    const wrap=matrix.parentElement;
+    const availableWidth=wrap.clientWidth;if(!availableWidth)return;
+    const rect=wrap.getBoundingClientRect();
+    const footer=document.querySelector('.footer');
+    const footerHeight=footer.getBoundingClientRect().height||40;
+    const room=Math.max(100,window.innerHeight-rect.top-footerHeight-25);
+    const side=Math.max(32,Math.min(availableWidth,room-10));
+    matrix.style.width=side+'px';
+    // The 32 × 32 display remains the same size; quadrant artwork fills cells.
+    output.style.fontSize='0px';output.style.lineHeight='0px';
+    output.style.letterSpacing='0px';
+  }
+  function redraw(){
+    if(!lastDate)return;
+    const result=makeMatrix(lastDate);
+    colorIndexes=result.palette;
+    const lines=result.text.split('\n');
+    const parts=[];
+    for(let y=0;y<32;y++){
+      for(let x=0;x<32;x++){
+        const i=y*32+x;
+        const shade=colorful?colors[colorIndexes[i]]:'#c6c8ce',mask=result.masks[i];
+        parts.push('<span style="--tl:',mask&8?shade:'transparent',
+          ';--tr:',mask&4?shade:'transparent',
+          ';--bl:',mask&2?shade:'transparent',
+          ';--br:',mask&1?shade:'transparent','">',lines[y][x],'</span>');
+      }
+      if(y!==31)parts.push('\n');
+    }
+    output.innerHTML=parts.join('');
+    layout();
+  }
+  generate.addEventListener('click',()=>{
+    if(randomMode){
+      digits=randomDate();
+      randomPending=false;
+      source.value=displayDate(digits);
+      updateDateOverlay();
+    }else if(!validDate(digits)){
+      status.textContent='INVALID DATE / YYYYMMDD';
+      source.focus();return;
+    }
+    lastDate=digits;
+    try{
+      redraw();
+      copy.hidden=false;
+      status.textContent='DATEMARK / '+digits;
+    }catch(error){
+      output.replaceChildren();copy.hidden=true;
+      lastDate='';
+      status.textContent='DATEMARK / CONNECTIVITY ERROR';
+      console.error(error);
+    }
+    updateGenerateLabel();
+  });
+  clear.addEventListener('click',()=>{
+    digits='';
+    source.value='';
+    randomPending=false;
+    previousManualDigits='';
+    updateDateOverlay();
+    lastDate='';
+    colorIndexes=[];
+    output.replaceChildren();
+    matrix.style.width='';
+    copy.hidden=true;
+    status.textContent='STANDBY';
+    updateGenerateLabel();
+    if(!randomMode)source.focus();
+  });
+  modeButton.addEventListener('click',()=>{
+    colorful=!colorful;
+    modeButton.textContent='c = '+(colorful?'y':'n');
+    modeButton.setAttribute('aria-pressed',String(colorful));
+    if(lastDate)redraw();
+  });
+  copy.addEventListener('click',async()=>{
+    const text=output.textContent;if(!text)return;
+    let ok=false;
+    try{await navigator.clipboard.writeText(text);ok=true;}
+    catch(error){
+      const temporary=document.createElement('textarea');
+      temporary.value=text;temporary.style.position='fixed';temporary.style.opacity='0';
+      document.body.appendChild(temporary);temporary.select();
+      try{ok=document.execCommand('copy');}catch(ignored){}
+      temporary.remove();
+    }
+    status.textContent=ok?'COPIED / 32 × 32':'COPY FAILED / SELECT MANUALLY';
+    if(!ok){
+      const range=document.createRange();range.selectNodeContents(output);
+      const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
+    }
+  });
+  window.addEventListener('resize',layout);
+  window.visualViewport?.addEventListener('resize',layout);
+  document.fonts?.ready.then(layout);
+  updateDateOverlay();
+  updateGenerateLabel();
+  layout();
+})();
+</script>
+<script>
+(()=>{'use strict';
+const title=document.getElementById('ink-menu-title');
+const menu=document.getElementById('ink-tool-menu');
+function openMenu(open){menu.hidden=!open;title.setAttribute('aria-expanded',String(open));}
+title.addEventListener('click',()=>openMenu(menu.hidden));
+title.addEventListener('keydown',event=>{
+  if(event.key==='Enter'||event.key===' '){event.preventDefault();openMenu(menu.hidden);}
+});
+document.addEventListener('pointerdown',event=>{
+  if(!title.contains(event.target)&&!menu.contains(event.target))openMenu(false);
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!menu.hidden){openMenu(false);title.focus();}
+});
+})();
+</script></body></html>

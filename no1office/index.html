@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>NO1 Office — Department of Narrative Operations</title>
+
+  <!-- Search indexing and canonical identity -->
+  <meta name="description" content="NO1 Office is a fictional YURI1 OC organization with two identities: an Ending Civilization transfer unit and a disguised scripted-production office cooperating with DDD Studio.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="./">
+
+  <!-- Social previews; intentionally no image or real-world employer claims -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NO1 Office">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="./">
+  <meta property="og:title" content="NO1 Office — Department of Narrative Operations">
+  <meta property="og:description" content="A fictional YURI1 OC universe office featuring an undisguised transfer unit and a DDD Studio collaboration cover.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NO1 Office — Department of Narrative Operations">
+  <meta name="twitter:description" content="A fictional YURI1 OC universe office featuring an undisguised transfer unit and a DDD Studio collaboration cover.">
+
+  <!-- Web presence schema; no real-world Organization or employer claims -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://no1office.yuri1.com/#website",
+        "url": "https://no1office.yuri1.com/",
+        "name": "NO1 Office",
+        "description": "A fictional office website from the YURI1 OC universe.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://no1office.yuri1.com/#webpage",
+        "url": "https://no1office.yuri1.com/",
+        "name": "NO1 Office — Department of Narrative Operations",
+        "description": "Fictional NO1 Office notice with undisguised civilization transfer unit and fictional DDD Studio collaboration cover.",
+        "isPartOf": { "@id": "https://no1office.yuri1.com/#website" },
+        "genre": "Fiction",
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper:#f4f2ec;
+      --ink:#202723;
+      --muted:#6a716b;
+      --line:#c9cdc5;
+      --dark:#193a33;
+      --glow:#d9e7db;
+    }
+    * { box-sizing:border-box; }
+    html { min-height:100%; }
+    body { margin:0; min-height:100vh; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+    body:before { content:""; position:fixed; z-index:0; inset:0; pointer-events:none; opacity:.12; background-image:radial-gradient(#41554a 0.5px,transparent 0.6px); background-size:5px 5px; }
+    .wrap { position:relative; z-index:1; width:min(940px, calc(100% - 48px)); margin:0 auto; }
+    header { padding:31px 0 24px; border-bottom:1px solid var(--ink); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; gap:13px; align-items:center; }
+    .seal { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border:1.5px solid var(--dark); color:var(--dark); font-family:Georgia,serif; font-size:24px; font-weight:bold; }
+    .brandname { font-weight:800; letter-spacing:.075em; font-size:15px; }
+    .brandsub { margin-top:4px; color:var(--muted); font:10px/1.5 monospace; letter-spacing:.115em; text-transform:uppercase; }
+    .header-right { text-align:right; font:10px/1.7 monospace; color:var(--muted); text-transform:uppercase; letter-spacing:.095em; }
+    main { padding:74px 0 88px; }
+    .eyebrow { font:11px/1.5 monospace; color:var(--dark); letter-spacing:.17em; text-transform:uppercase; }
+    h1 { max-width:760px; font:normal clamp(54px, 9vw, 108px)/.99 Georgia,'Times New Roman',serif; letter-spacing:-.055em; margin:22px 0 26px; }
+    .lead { max-width:660px; font-size:17px; line-height:1.8; color:#4d5952; margin:0 0 58px; }
+    .status { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+    .status > section { padding:28px 24px 29px 0; }
+    .status > section + section { border-left:1px solid var(--line); padding-left:30px; }
+    .kicker { text-transform:uppercase; font:10px/1.5 monospace; letter-spacing:.14em; color:var(--muted); margin-bottom:14px; }
+    .state { display:flex; gap:10px; align-items:center; font:700 20px/1.3 Arial,sans-serif; letter-spacing:.025em; color:var(--dark); }
+    .light { width:8px; height:8px; background:#3a7658; border-radius:50%; box-shadow:0 0 0 4px var(--glow); }
+    .small { margin:13px 0 0; color:#606b64; font-size:13px; line-height:1.75; }
+    .answer { font-size:18px; line-height:1.3; font-weight:700; }
+    .lower { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:50px; padding:51px 0; }
+    h2 { font-size:11px; font-family:monospace; font-weight:500; text-transform:uppercase; letter-spacing:.16em; margin:0 0 21px; color:var(--muted); }
+    .duties { margin:0; padding:0; list-style:none; }
+    .duties li { padding:12px 0; font-size:15px; border-bottom:1px solid var(--line); }
+    .duties li:first-child { border-top:1px solid var(--line); }
+    .duties span { font-family:monospace; font-size:10px; color:#8c938c; margin-right:12px; }
+    .notice { padding:22px 24px; border:1px solid var(--line); background:rgba(255,255,255,.35); }
+    .notice p { font-size:15px; line-height:1.8; margin:0; }
+    .notice .aside { margin-top:22px; color:var(--muted); font:11px/1.7 monospace; }
+    .footnote { border-top:1px solid var(--ink); padding:18px 0 37px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--muted); font:10px/1.6 monospace; letter-spacing:.045em; }
+    @media(max-width:600px) {
+      .wrap { width:min(100% - 36px, 940px); }
+      header { padding:21px 0; }
+      .header-right { display:none; }
+      main { padding:62px 0 66px; }
+      h1 { margin:22px 0; }
+      .lead { font-size:15px; margin-bottom:44px; }
+      .status,.lower { grid-template-columns:1fr; }
+      .status > section { padding:25px 0; }
+      .status > section + section { border-left:0; border-top:1px solid var(--line); padding:25px 0; }
+      .lower { gap:36px; padding:39px 0; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto!important; } }
+
+    /* Two fictional identities; existing public-office styles remain unmodified. */
+    [hidden] { display:none !important; }
+    .modebar { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:17px 0; border-bottom:1px solid var(--line); }
+    .mode-info { display:flex; align-items:center; gap:10px; font:10px/1.6 monospace; letter-spacing:.09em; color:var(--muted); }
+    .mode-indicator { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--dark); }
+    .mode-buttons { display:flex; gap:7px; flex-wrap:wrap; }
+    .mode-buttons button { background:transparent; color:var(--muted); border:1px solid var(--line); font:11px/1.4 monospace; cursor:pointer; padding:9px 12px; border-radius:3px; }
+    .mode-buttons button[aria-pressed="true"] { border-color:var(--dark); color:var(--paper); background:var(--dark); }
+    .mode-buttons button:focus-visible { outline:3px solid #d59e59; outline-offset:3px; }
+    .mode-buttons button:hover:not([aria-pressed="true"]) { border-color:var(--dark); color:var(--ink); }
+    .dialogue { padding:19px 21px; }
+    .dialogue p { display:grid; grid-template-columns:42px minmax(0,1fr); gap:10px; margin:0 0 15px; font:13px/1.65 Arial,sans-serif; }
+    .dialogue p:last-child { margin-bottom:0; }
+    .dialogue strong { font:700 11px/1.8 monospace; color:var(--dark); }
+    .dialogue em { opacity:.74; }
+    body.mode-revealed { --paper:#0c151a; --ink:#e7f0ee; --muted:#abbfc1; --line:#42565b; --dark:#a3e8d6; --glow:#1b3937; }
+    body.mode-revealed:before { opacity:.08; background-image:radial-gradient(#b6dfd5 0.5px,transparent 0.6px); }
+    body.mode-revealed .lead { color:#c2d2d0; }
+    body.mode-revealed .small { color:#b7c8c6; }
+    body.mode-revealed .duties span { color:#9daba9; }
+    body.mode-revealed .notice { background:rgba(164,228,211,.035); }
+    body.mode-revealed .state .light { background:#9fdabe; box-shadow:0 0 0 4px #234139; }
+    /* Single-page chapter navigation; uses the current fictional display mode. */
+    .section-nav { position:sticky; top:0; z-index:20; background:var(--paper); display:flex; align-items:center; flex-wrap:wrap; gap:7px 27px; padding:15px 0; border-bottom:1px solid var(--line); }
+    .section-nav a { color:var(--muted); text-decoration:none; font:11px/1.5 monospace; letter-spacing:.08em; text-transform:uppercase; padding:6px 0; border-bottom:2px solid transparent; }
+    .section-nav a:hover { color:var(--ink); border-bottom-color:var(--dark); }
+    .section-nav a:focus-visible { outline:2px solid #d59e59; outline-offset:3px; }
+    .page-section { scroll-margin-top:calc(var(--sticky-nav-height, 60px) + 14px); margin-top:58px; }
+    .page-section + .page-section { padding-top:43px; border-top:1px solid var(--line); }
+    .section-title { font:normal 30px/1.15 Georgia,'Times New Roman',serif; letter-spacing:-.035em; text-transform:none; color:var(--ink); margin:0 0 25px; }
+    .members-list { border-top:1px solid var(--line); }
+    .member-entry { display:grid; grid-template-columns:90px minmax(0,1fr); gap:16px; align-items:baseline; padding:20px 0; border-bottom:1px solid var(--line); }
+    .member-code { font:700 17px/1.35 monospace; color:var(--dark); }
+    .member-role { font-size:16px; line-height:1.55; color:var(--ink); }
+    .page-section .lower { padding:0; }
+    .footnote, #index { scroll-margin-top:calc(var(--sticky-nav-height, 60px) + 14px); }
+    .term-heading { flex-basis:100%; font:normal 25px/1.3 Georgia,'Times New Roman',serif; color:var(--ink); margin-bottom:9px; }
+    @media (max-width:600px) {
+      .section-nav { gap:6px 18px; }
+      .page-section { margin-top:43px; }
+      .page-section + .page-section { padding-top:34px; }
+      .member-entry { grid-template-columns:62px minmax(0,1fr); gap:12px; padding:17px 0; }
+      .member-role { font-size:14px; }
+      .modebar { align-items:flex-start; flex-direction:column; }
+      .mode-buttons { width:100%; }
+      .mode-buttons button { flex:1; }
+      .dialogue { padding:17px; }
+    }
+  </style>
+</head>
+<body class="mode-revealed">
+  <div class="wrap">
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#index">Index</a>
+      <a href="#update" data-section="update">Update</a>
+      <a href="#members" data-section="members">Members</a>
+      <a href="#works" data-section="works">Works</a>
+      <a href="#term">Term</a>
+    </nav>
+
+    <header id="index">
+      <div class="brand" aria-label="NO1 Office">
+        <div class="seal" aria-hidden="true">1</div>
+        <div>
+          <div class="brandname">NO1 OFFICE</div>
+          <div class="brandsub"><span data-office-true>Ending Civilization · Direct Transfer Unit</span><span data-office-cover hidden>Department of Narrative Operations</span></div>
+        </div>
+      </div>
+      <div class="header-right"><span data-office-true>Civilization Registry<br>Transfer Notice / No. 001</span><span data-office-cover hidden>Office Registry<br>Public Notice / No. 001</span></div>
+    </header>
+
+    <nav class="modebar" aria-label="Fictional office display mode">
+      <div class="mode-info"><span class="mode-indicator" aria-hidden="true"></span><span id="mode-description">IDENTITY DISPLAY / UNDISGUISED</span></div>
+      <div class="mode-buttons" role="group" aria-label="Disguise mode">
+        <button type="button" id="mode-off" aria-pressed="true" aria-controls="office-classified office-disguise">Disguise OFF</button>
+        <button type="button" id="mode-on" aria-pressed="false" aria-controls="office-classified office-disguise">Disguise ON</button>
+      </div>
+    </nav>
+
+    <main id="office-classified" aria-label="Undisguised fictional office">
+      <div class="eyebrow">Ending Civilization · Direct Transfer Unit</div>
+      <h1>Disguise<br>not applied.</h1>
+      <p class="lead">This is the working site of the Ending Civilization's direct transfer unit. Cross-dimensional transfer assignments remain active. This temporary webpage has been published solely to provide an update on the office's current status.</p>
+
+      <section class="page-section" id="update" aria-label="Update">
+        <h2 class="section-title">Update</h2>
+      <div class="status" aria-label="Transfer unit status">
+        <section>
+          <div class="kicker">Current assignment</div>
+          <div class="state"><span class="light" aria-hidden="true"></span>Transfer operations active</div>
+          <p class="small">Civilization-layer assignments remain in progress. Access to operational details is restricted.</p>
+        </section>
+        <section>
+          <div class="kicker">External collaboration</div>
+          <div class="answer">Not accepting inquiries.</div>
+          <p class="small">All personnel remain assigned to existing operations.</p>
+        </section>
+      </div>
+
+      </section>
+
+      <section class="page-section" id="members" aria-labelledby="members-heading">
+        <h2 class="section-title" id="members-heading">Members</h2>
+        <div class="members-list">
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO3</span><span class="member-role">Public Relations &amp; Creative Lead</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO2</span><span class="member-role">Technology &amp; Risk Management</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO6</span><span class="member-role">Operations Agent</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO5</span><span class="member-role">All-Round Backup Support</span></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="works" aria-label="Works">
+        <h2 class="section-title">Works</h2>
+      <div class="lower">
+        <section>
+          <h2>Operational duties</h2>
+          <ul class="duties">
+            <li><span>01 /</span> Cross-dimensional transfers</li>
+            <li><span>02 /</span> Timeline anomaly review</li>
+            <li><span>03 /</span> Civilization-layer routing</li>
+            <li><span>04 /</span> Narrative cover maintenance</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Internal transmission · Office personnel</h2>
+          <div class="notice dialogue">
+            <p><strong>NO6</strong><span>This is the Ending Civilization's worksite...</span></p>
+            <p><strong>NO2</strong><span>Wait. Isn't this a little too conspicuous?</span></p>
+            <p><strong>NO3</strong><span>Should we put on a disguise? Like our collaboration with DDD Studio...</span></p>
+            <p><strong>NO2</strong><span>Then...</span></p>
+            <p><strong>NO3</strong><span><em>(checks the public-facing version)</em>&nbsp;Perfect.</span></p>
+          </div>
+        </section>
+      </div>
+      </section>
+    </main>
+
+    <main id="office-disguise" hidden aria-label="Disguised public office">
+      <div class="eyebrow">Official notice · Office currently operational</div>
+      <h1>The office<br>is occupied.</h1>
+      <p class="lead">NO1 Office handles scriptwriting, narrative continuity, and other matters deemed necessary by the office. All current personnel are assigned to an ongoing large-scale production in collaboration with DDD Studio. This temporary webpage has been published solely to provide a clear update on the office's current status.</p>
+
+      <section class="page-section" id="update-cover" aria-label="Update">
+        <h2 class="section-title">Update</h2>
+      <div class="status" aria-label="Office status">
+        <section>
+          <div class="kicker">Current assignment</div>
+          <div class="state"><span class="light" aria-hidden="true"></span>Under long-term contract</div>
+          <p class="small">Major production in progress. Assignment details are not available for external review.</p>
+        </section>
+        <section>
+          <div class="kicker">External collaboration</div>
+          <div class="answer">Not accepting inquiries.</div>
+          <p class="small">The office is fully committed to its present assignment.</p>
+        </section>
+      </div>
+
+      </section>
+
+      <section class="page-section" id="members-cover" aria-labelledby="members-cover-heading">
+        <h2 class="section-title" id="members-cover-heading">Members</h2>
+        <div class="members-list">
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO2</span><span class="member-role">Performer · Scriptwriting Contributor</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO3</span><span class="member-role">Performer · Scriptwriting Contributor</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO5</span><span class="member-role">Performer · Scriptwriting Contributor</span></div>
+          <div class="member-entry"><span class="member-code notranslate" translate="no">NO6</span><span class="member-role">Performer · Scriptwriting Contributor</span></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="works-cover" aria-label="Works">
+        <h2 class="section-title">Works</h2>
+      <div class="lower">
+        <section>
+          <h2>Regular office duties</h2>
+          <ul class="duties">
+            <li><span>01 /</span> Scriptwriting</li>
+            <li><span>02 /</span> Narrative development</li>
+            <li><span>03 /</span> Continuity review</li>
+            <li><span>04 /</span> Unscheduled creative incidents</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Administrative memorandum</h2>
+          <div class="notice">
+            <p>All desks remain assigned.<br>All assignments remain in effect.<br>No additional appointments will be issued.</p>
+            <div class="aside">Please do not request an explanation.<br>The office has already filed one.</div>
+          </div>
+        </section>
+      </div>
+      </section>
+    </main>
+
+    <footer id="term" class="footnote" aria-label="Term">
+      <div class="term-heading">Term</div>
+      <span>NO1 OFFICE / FICTIONAL IN-UNIVERSE WEBSITE</span>
+      <span>NO1 Office is a fictional organization derived from the YURI1 OC universe. It does not exist in the real world, and this webpage is intended solely as an extension of the creative universe for entertainment purposes.</span>
+      <div class="section-nav" style="width:100%;display: flex ;justify-content: space-between;padding: 7px;"><span><a href="../www/" target="_blank" rel="noopener noreferrer">www.yuri1.com</a></span><br/><span style="font-size:0.5rem;color:#777777;"> Create: 2026-10-17<br/>Latest: 2026-11-01</span></div>
+    </footer>
+      
+  </div>
+  <script>
+    // Presentation only: both modes belong to the same fictional YURI1 universe.
+    (() => {
+      const off = document.getElementById('mode-off');
+      const on = document.getElementById('mode-on');
+      const trueOffice = document.getElementById('office-classified');
+      const coverOffice = document.getElementById('office-disguise');
+      const label = document.getElementById('mode-description');
+      const trueLabels = document.querySelectorAll('[data-office-true]');
+      const coverLabels = document.querySelectorAll('[data-office-cover]');
+      const sectionNav = document.querySelector('.section-nav');
+      const updateNavHeight = () => document.documentElement.style.setProperty('--sticky-nav-height', sectionNav.offsetHeight + 'px');
+      updateNavHeight();
+      if ('ResizeObserver' in window) new ResizeObserver(updateNavHeight).observe(sectionNav);
+      else window.addEventListener('resize', updateNavHeight);
+      function setDisguise(enabled) {
+        document.body.classList.toggle('mode-revealed', !enabled);
+        trueOffice.hidden = enabled;
+        coverOffice.hidden = !enabled;
+        off.setAttribute('aria-pressed', String(!enabled));
+        on.setAttribute('aria-pressed', String(enabled));
+        label.textContent = enabled ? 'IDENTITY DISPLAY / DISGUISED' : 'IDENTITY DISPLAY / UNDISGUISED';
+        for (const el of trueLabels) el.hidden = enabled;
+        for (const el of coverLabels) el.hidden = !enabled;
+        for (const link of document.querySelectorAll('.section-nav [data-section]')) {
+          link.setAttribute('href', '#' + link.dataset.section + (enabled ? '-cover' : ''));
+        }
+      }
+      off.addEventListener('click', () => setDisguise(false));
+      on.addEventListener('click', () => setDisguise(true));
+    })();
+  </script>
+</body>
+</html>

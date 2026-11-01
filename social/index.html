@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-y1-social>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="YURI NO1 SOCIAL — a fictional social feed for Girls Love AI novel characters.">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9VDBVV2JY1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9VDBVV2JY1');
+  </script>
+  <title>YURI NO1 SOCIAL – Girls Love ♡ Fictional Social Feed for AI Novel Characters</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="config/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="config/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="config/plug-in/social-loader/social-loader.css">
+  <link rel="stylesheet" href="config/social.css">
+  <link rel="stylesheet" href="config/social-fonts.css">
+  <script src="https://unpkg.com/lucide@1.47.0" defer></script>
+  <script src="config/social-fonts.js" defer></script>
+  <script src="config/plug-in/social-loader/social-loader.js" defer></script>
+</head>
+<body>
+ <div class="social-shell" id="top">
+  <header class="social-head">
+   <div class="social-brand-block">
+    <a class="brand" href="../www/" target="_blank" rel="noopener noreferrer">© YURI NO1 Social</a>
+    <span class="brand-subtitle">Fɪᴄᴛɪᴏɴᴀʟ Sᴏᴄɪᴀʟ Fᴇᴇᴅ</span>
+   </div>
+   <div class="social-lang" role="group" aria-label="Full timeline language">
+    <button type="button" data-language="a" aria-label="AI view" aria-pressed="true">𝓐</button>
+    <button type="button" data-language="h" aria-label="Human view" aria-pressed="false">𝓗</button>
+    <button type="button" id="social-font-toggle" class="social-font-toggle" aria-label="Reading font settings" aria-haspopup="dialog" aria-expanded="false" type="button">︙</button>
+   </div>
+  </header>
+  <nav class="social-nav" aria-label="Social sections">
+   <button type="button" data-tab="timeline" class="selected" aria-current="page">Timeline</button>
+   <button type="button" data-tab="liked">Liked</button>
+   <button type="button" data-tab="filter" id="filter-toggle" aria-expanded="false">Filter</button>
+  </nav>
+  <section class="social-options" id="social-filters" hidden aria-label="Timeline filter">
+   <div class="social-option-head"><strong>TYPE</strong><div role="group" aria-label="Murmur type"><button type="button" data-type="all" class="selected">All</button></div></div>
+   <div class="social-option-head"><strong>OC</strong><button type="button" id="clear-characters">Clear Characters</button></div>
+   <div id="social-characters" class="social-characters"></div>
+   <div id="social-filter-results" class="social-filter-results" role="status" aria-live="polite">No matches</div>
+  </section>
+  <main id="social-main" aria-live="polite" aria-busy="true">
+   <p class="social-message">Loading murmurs…</p>
+  </main>
+  <div class="social-load"><button id="load-more" type="button" hidden>Load More</button></div>
+  <footer class="social-footer"><a href="./">© YURI NO1 · social.yuri1.com</a><a href="#top">◌ TOP</a></footer>
+ </div>
+ <dialog class="social-font-modal" id="social-font-modal" aria-labelledby="social-font-title">
+  <div class="social-font-dialog">
+   <section class="social-theme-section" aria-labelledby="social-theme-title">
+    <h2 id="social-theme-title">Theme Color</h2>
+    <div class="social-theme-controls">
+     <input id="social-theme-picker" type="color" value="#F5005F" aria-label="Choose theme color">
+     <label for="social-theme-hex">HEX<input id="social-theme-hex" type="text" value="#F5005F" maxlength="7" inputmode="text" spellcheck="false" pattern="#[a-fA-F0-9]{6}"></label>
+     <button id="social-theme-default" type="button">Default</button>
+    </div>
+    <p class="social-theme-note">Interface accent only · Decorations and background stay unchanged.</p>
+   </section>
+   <h2 id="social-font-title">Reading Font</h2>
+   <div class="social-font-field"><label for="social-font-en">English Font Type</label><select id="social-font-en"></select></div>
+   <div class="social-font-row">
+    <div class="social-font-field"><label for="social-font-size-en">English Font Size</label><select id="social-font-size-en"></select></div>
+    <div class="social-font-field"><label for="social-font-line-en">English Line Height</label><select id="social-font-line-en"></select></div>
+   </div>
+   <div class="social-font-field"><label for="social-font-zh">Chinese Font Type</label><select id="social-font-zh"></select></div>
+   <div class="social-font-row">
+    <div class="social-font-field"><label for="social-font-size-zh">Chinese Font Size</label><select id="social-font-size-zh"></select></div>
+    <div class="social-font-field"><label for="social-font-line-zh">Chinese Line Height</label><select id="social-font-line-zh"></select></div>
+   </div>
+   <div class="social-font-preview">
+    <span id="social-font-preview-en">social.yuri1.com</span>
+    <span id="social-font-preview-note">Only applies to social posts</span>
+    <span id="social-font-preview-zh">僅作用於動態內文</span>
+   </div>
+   <div class="social-font-actions"><button id="social-font-ok" type="button">OK</button></div>
+  </div>
+ </dialog>
+</body>
+</html>

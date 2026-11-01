@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="./config/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./config/img/favicon-16x16.png">
+<title>INK YURI NO1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#090a0d;color:#c6c8ce;font-family:"DotGothic16",ui-monospace,monospace}main{max-width:1050px;margin:0 auto;padding:clamp(20px,5vw,55px)}h1{font-size:13px;font-weight:400;letter-spacing:.55em;color:#a3a6b0;margin:0 0 35px}label{display:block;font-size:11px;letter-spacing:.18em;margin-bottom:12px;color:#9699a4}textarea{display:block;width:100%;min-height:110px;resize:vertical;border:1px solid #484b55;background:#101116;color:#dedfe5;padding:14px;font:14px/1.6 inherit;outline:none}textarea:focus,input:focus{border-color:#a6a9b4}button{margin-top:16px;padding:11px 30px;background:transparent;border:1px solid #8c8f9b;color:#d3d5dc;font:13px inherit;letter-spacing:.25em;cursor:pointer}button:hover{background:#24262d}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.speed-field{display:flex;align-items:center;gap:9px;margin-top:16px;color:#a6a8b0;font-size:12px}.speed-field input{width:92px;min-width:0;padding:10px 8px;border:1px solid #646773;background:#111319;color:#e2e4ea;font:13px "DotGothic16",monospace;outline:none}.status{font-size:11px;color:#a1a3ae;letter-spacing:.12em;margin:28px 0 12px}.matrix-wrap{width:100%;max-width:720px;overflow:hidden}.matrix{white-space:pre;display:block;width:100%;margin:0;color:#c6c8ce;font-family:"DotGothic16",ui-monospace,monospace;font-weight:400;font-variant-ligatures:none;font-kerning:none;font-synthesis:none;tab-size:1;overflow:hidden}.matrix:not(:empty){border-top:1px solid #444751;padding-top:18px}.matrix-text{display:block;white-space:pre;line-height:1}.footer{max-width:720px;border-top:1px solid #444751;margin-top:18px;padding-top:15px;font-size:12px;letter-spacing:.13em}.footer a{color:#a8abb5;text-decoration:none}.footer a:hover{text-decoration:underline}a,a:link,a:visited,a:hover,a:active,a:focus{color:inherit}a{text-decoration:none}.footer a:hover{text-decoration:underline}#copy[hidden]{display:none}
+
+/* v0.5: consistent control geometry and viewport-fit layout */
+:root{--control-height:48px}
+.actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:stretch;margin-top:16px}
+.actions button,.speed-field{margin:0;min-width:0;height:var(--control-height);border-radius:0}
+.actions button{padding:0 8px;display:flex;align-items:center;justify-content:center;letter-spacing:.12em}
+.speed-field{display:flex;gap:8px;align-items:center;justify-content:center;border:1px solid #646773;padding:0 8px}
+.speed-field input{width:100%;height:100%;border:0;padding:0;background:transparent;text-align:center;min-width:0}
+.speed-field:focus-within{border-color:#a6a9b4}
+#copy[hidden]{display:block;visibility:hidden;pointer-events:none}
+.matrix-wrap{max-width:none;display:flex;justify-content:center;align-items:flex-start}
+.matrix{width:100%;max-width:none;flex:none}
+.matrix:not(:empty){padding-top:10px}
+.footer{max-width:none}
+@media(max-width:650px){
+ main{padding:18px 20px 12px}
+ h1{font-size:clamp(9px,2.45vw,13px);letter-spacing:.18em;margin-bottom:20px;white-space:nowrap}
+ label{margin-bottom:8px}
+ textarea{height:clamp(64px,13dvh,115px);min-height:0;resize:none;padding:10px 12px}
+ .actions{gap:8px;margin-top:12px}
+ :root{--control-height:42px}
+ .actions button{font-size:12px}
+ .speed-field{font-size:11px;gap:3px;padding:0 5px}
+ .speed-field input{font-size:12px}
+ .status{margin:16px 0 8px;font-size:10px}
+ .matrix:not(:empty){padding-top:8px}
+ .footer{margin-top:10px;padding-top:10px;font-size:11px}
+}
+ .status-mode{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;letter-spacing:inherit;cursor:pointer;display:inline;vertical-align:baseline}.status-mode:hover{background:none;text-decoration:underline}.status-mode:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+/* The title itself opens the compact two-tool switcher. */
+.ink-heading{position:relative;display:flow-root}
+.ink-heading h1{cursor:pointer;user-select:none}
+.ink-heading h1:focus-visible{outline:1px solid #8c8f9b;outline-offset:5px}
+.ink-tool-menu[hidden]{display:none}
+.ink-tool-menu{position:absolute;z-index:10;top:24px;left:0;width:max-content;max-width:calc(100vw - 40px);border:1px solid #484b55;background:#101116;padding:5px 0;box-shadow:0 10px 22px #0008}
+.ink-tool-menu a{display:block;padding:10px 15px;border-left:2px solid transparent;font:11px/1.7 "DotGothic16",ui-monospace,monospace;letter-spacing:.14em;white-space:normal;color:#a3a6b0;text-decoration:none}
+.ink-tool-menu a[aria-current="page"]{border-left-color:#a3a6b0;color:#e1e2e8}
+.ink-tool-menu a:hover,.ink-tool-menu a:focus-visible{background:#24262d;color:#f0f0f3;outline:none}
+@media(max-width:650px){.ink-tool-menu{top:20px}}
+</style>
+</head>
+<body><main><header class="ink-heading"><h1 id="ink-menu-title" role="button" tabindex="0" aria-expanded="false" aria-controls="ink-tool-menu">INK RANDOM QUANTUM SYSTEM</h1><nav id="ink-tool-menu" class="ink-tool-menu" aria-label="INK 工具切換" hidden><a href="./index.html" aria-current="page">INK RANDOM QUANTUM SYSTEM</a><a href="./ink-datemark-code.html">INK DATEMARK CODE</a></nav></header><label for="source">INPUT STRING</label><textarea id="source" spellcheck="false" placeholder="Anything…"></textarea><div class="actions"><button id="toggle" type="button">演算</button><label class="speed-field" for="speed">秒 <input id="speed" type="number" min="0.001" step="any" value="0.05" inputmode="decimal" aria-label="演算間隔（秒）"></label><button id="copy" type="button" hidden>複写</button></div><div class="status" id="status" aria-live="polite"><span id="status-text">STANDBY</span> / <button type="button" id="color-mode" class="status-mode" aria-label="切換彩色或單色模式">c = y</button></div><div class="matrix-wrap"><div class="matrix" id="matrix"><span class="matrix-text" id="matrix-text" aria-label="32 × 32 字元陣列"></span></div></div>
+    <footer class="footer"><a href="../www/" target="_blank" rel="noopener noreferrer">www.yuri1.com</a><br/><span style="font-size:0.5rem;color:#777777;"> Create: 2026-10-12<br/>Latest: 2026-10-22</span></footer></main>
+<script>
+(()=>{'use strict';const button=document.getElementById('toggle'),copy=document.getElementById('copy'),matrix=document.getElementById('matrix'),output=document.getElementById('matrix-text'),status=document.getElementById('status-text'),modeButton=document.getElementById('color-mode'),speed=document.getElementById('speed');const alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';let timer=null;let colorful=true;const count=32*32;const bytes=new Uint32Array(count*2);const colors=["#FFFFFF","#808080","#6E927C","#00FFFF","#00FF00","#FF00FF","#FF0000","#FFFF00"];
+function layout(){const wrap=matrix.parentElement;const availableWidth=wrap.clientWidth;if(!availableWidth)return;
+const rect=wrap.getBoundingClientRect();const footer=document.querySelector('.footer');
+const footerHeight=footer.getBoundingClientRect().height||40;
+const room=Math.max(100,window.innerHeight-rect.top-footerHeight-25);
+const side=Math.max(32,Math.min(availableWidth,room-10));
+matrix.style.width=side+'px';const cell=side/32;const size=cell*.76;output.style.fontSize=size+'px';output.style.lineHeight=cell+'px';const canvas=layout.canvas||(layout.canvas=document.createElement('canvas'));const context=canvas.getContext('2d');const family=getComputedStyle(output).fontFamily;context.font=`400 ${size}px ${family}`;let max=0;for(const char of alphabet)max=Math.max(max,context.measureText(char).width);output.style.letterSpacing=(cell-max)+'px';}
+modeButton.addEventListener('click',()=>{colorful=!colorful;modeButton.textContent='c = '+(colorful?'y':'n');if(!colorful){output.querySelectorAll('span[style]').forEach(node=>node.style.color='');}else if(output.textContent){const nodes=output.querySelectorAll('span[style]');crypto.getRandomValues(bytes);nodes.forEach((node,i)=>node.style.color=colors[bytes[count+i]%colors.length]);}});
+ function draw(){crypto.getRandomValues(bytes);const fragments=[];for(let r=0;r<32;r++){for(let c=0;c<32;c++){const i=r*32+c;fragments.push('<span style="color:',colorful?colors[bytes[count+i]%colors.length]:'inherit','">',alphabet[bytes[i]%alphabet.length],'</span>');}if(r!==31)fragments.push('\n');}output.innerHTML=fragments.join('');}
+button.addEventListener('click',()=>{if(timer!==null){clearInterval(timer);timer=null;button.textContent='演算';copy.hidden=false;status.textContent='TERMINATED / OUTPUT FROZEN';return;}const seconds=Number(speed.value);if(!Number.isFinite(seconds)||seconds<=0){speed.focus();status.textContent='INVALID INTERVAL';return;}layout();draw();timer=setInterval(draw,Math.max(1,seconds*1000));button.textContent='終了';copy.hidden=true;status.textContent='PROCESSING / ∞';});
+copy.addEventListener('click',async()=>{const text=output.textContent;if(!text)return;let ok=false;try{await navigator.clipboard.writeText(text);ok=true;}catch(e){const temp=document.createElement('textarea');temp.value=text;temp.style.position='fixed';temp.style.opacity='0';document.body.appendChild(temp);temp.select();try{ok=document.execCommand('copy');}catch(e){}temp.remove();}status.textContent=ok?'COPIED / 32 × 32':'COPY FAILED / SELECT MANUALLY';if(!ok){const range=document.createRange();range.selectNodeContents(output);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);}});
+window.addEventListener('resize',layout);window.visualViewport?.addEventListener('resize',layout);document.fonts?.ready.then(layout);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&timer!==null)draw();});layout();})();
+</script>
+<script>
+(()=>{'use strict';
+const title=document.getElementById('ink-menu-title');
+const menu=document.getElementById('ink-tool-menu');
+function openMenu(open){menu.hidden=!open;title.setAttribute('aria-expanded',String(open));}
+title.addEventListener('click',()=>openMenu(menu.hidden));
+title.addEventListener('keydown',event=>{
+  if(event.key==='Enter'||event.key===' '){event.preventDefault();openMenu(menu.hidden);}
+});
+document.addEventListener('pointerdown',event=>{
+  if(!title.contains(event.target)&&!menu.contains(event.target))openMenu(false);
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!menu.hidden){openMenu(false);title.focus();}
+});
+})();
+</script></body></html>
